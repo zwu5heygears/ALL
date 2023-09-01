@@ -2,7 +2,8 @@
 #include <opencv2/opencv.hpp>
 #include <thread>
 //#include <onnx_runtime>
-//#include "PID.h"
+#include "PID.h"
+#include "PID2.h"
 #include <chrono>
 #include <sstream>
 #include <boost/asio.hpp>
@@ -34,5 +35,16 @@ int main() {
     ss << put_time(tm_now, "%Y-%m-%d %H:%M:%S");
     string timestr = ss.str();
     cout << timestr << endl;
+    auto pid = PID(20, 2, 3, 4);
+    double cur = 5;
+    pid.setPv(20);
+    pid.setMv(cur);
+    for(int i = 0; i< 100; ++i){
+       cur = pid.update(20);
+       pid.setMv(cur);
+    }
+    cout << pid.getInfo() <<endl;
+
+    auto pid2 = MiniPID(20, 2, 3, 4);
     return 0;
 }
