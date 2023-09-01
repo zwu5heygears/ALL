@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 project(ALL VERSION 1.0)  # 指定项目和版本号
-
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} -pthread)
 set(CMAKE_CXX_STANDARD 11)  # 设置变量值
 FIND_PACKAGE(OpenCV REQUIRED)
 add_executable(ALL main.cpp)  # 添加可生成文件的源代码文件
